@@ -8,7 +8,7 @@ with io.open('README.rst', 'rt', encoding='utf8') as f:
 setup(
     name='hfda',
     version='0.1.0',
-    url='https://github.com/iamhirok/HFDA',
+    url='https://github.com/hiroki-kojima/HFDA',
     license='BSD',
     author='Hiroki Kojima',
     author_email='7316072@gmail.com',
