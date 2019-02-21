@@ -23,7 +23,7 @@ def calc_L_average(X, k):
     Return <L(k)> as the average value over k sets of Lm(k).
 
     """
-    calc_L_series = np.vectorize(lambda m: calc_L(X, k, m))
+    calc_L_series = np.frompyfunc(lambda m: calc_L(X, k, m), 1, 1)
 
     L_average = np.average(calc_L_series(np.arange(1, k+1)))
 
@@ -59,10 +59,10 @@ def measure(X, k_max):
     1.0005565919808783
 
     """
-    calc_L_average_series = np.vectorize(lambda k: calc_L_average(X, k))
+    calc_L_average_series = np.frompyfunc(lambda k: calc_L_average(X, k), 1, 1)
 
     k = np.arange(1, k_max+1)
-    L = calc_L_average_series(k)
+    L = calc_L_average_series(k).astype(np.float64)
 
     D, _ = - np.polyfit(np.log2(k), np.log2(L), 1)
 
